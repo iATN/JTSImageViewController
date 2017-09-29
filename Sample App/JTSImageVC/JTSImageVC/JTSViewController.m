@@ -9,7 +9,7 @@
 #import "JTSViewController.h"
 
 #import "JTSImageViewController.h"
-#import "JTSImageInfo.h"
+#import "JTSMediaInfo.h"
 
 #define TRY_AN_ANIMATED_GIF 0
 
@@ -35,11 +35,12 @@
 - (void)bigButtonTapped:(id)sender {
     
     // Create image info
-    JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+    JTSMediaInfo *imageInfo = [[JTSMediaInfo alloc] init];
 #if TRY_AN_ANIMATED_GIF == 1
     imageInfo.imageURL = [NSURL URLWithString:@"http://media.giphy.com/media/O3QpFiN97YjJu/giphy.gif"];
 #else
-    imageInfo.image = self.bigImageButton.image;
+	imageInfo.image = self.bigImageButton.image;
+	imageInfo.videoURL = [NSURL URLWithString:@"https://d2phucl1xk8xs4.cloudfront.net/incoming/ee4cec8b-e791-440b-b2ad-27af26d1e19b.mov?Expires=1448068215&Signature=FxkTiNWuhn3UxOQ9pZkjLSwPcmXZwAcUrCZd2HVkN8yhEePif4a2HhcGohpDcrOE-C5P5f6Sq4EGiHsyox8YQoskU-AqH~XLTrDRzWNcgE1B1iYYavky-pcMUTMj45gJf02mdi0Xle6D0UeOghgFjEB~tStwTKL0~HnnBeNSZIBN-FY2cJZQerZY3G0MIpIsH0t8~isD5Pno0knp2Fh8cdp3QTxtbeOKsAyTwQEECewUHv59oKYuk4UmjeHsizAqMLDcTFRamZPvJh5hMitKF39vcvFv3of3UWPKOJ3PBlczoGrQY6ICWd-A7h6z-~U7z3KBzKvb5c-jRDhY9w2M3g__&Key-Pair-Id=APKAJCH5JQ2MA6I6WXWQ[;"];
 #endif
     imageInfo.referenceRect = self.bigImageButton.frame;
     imageInfo.referenceView = self.bigImageButton.superview;
@@ -53,7 +54,7 @@
                                            backgroundStyle:JTSImageViewControllerBackgroundOption_Scaled];
     
     // Present the view controller.
-    [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
+    [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition completion:nil];
 }
 
 @end
